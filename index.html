@@ -3,16 +3,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Richesse Solutions - Indian Market Trading</title>
 
-<style>
-
-</style>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <!-- <div id="loader" style="display:none;" class="loader"></div> -->
 <nav class="navbar">
   <!-- <div class="logo">Richesse Solutions</div> -->
   <div class="logo">
@@ -232,7 +228,7 @@
   </div>
 </section>
 
-<section id="contact" class="contact">
+<!-- <section id="contact" class="contact">
   <h2 class="section-title">Contact Us</h2>
   <div class="contact-form-container animate">
     <form class="contact-form" action="mail/mail.php" method="POST">
@@ -251,12 +247,35 @@
       <button type="submit" class="btn">Send Message</button>
     </form>
   </div>
+</section> -->
+
+<section id="contact" class="contact">
+  <h2 class="section-title">Contact Us</h2>
+  <div class="contact-form-container animate">
+      <form class="contact-form" id="contactForm" action="mail/mail.php" method="POST">
+          <div class="form-group">
+              <input type="text" name="name" id="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+              <input type="email" name="email" id="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+              <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
+          </div>
+          <div class="form-group">
+              <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+      </form>
+      <div id="loader" class="loader"></div>
+      <div id="successMessage" style="display:none;">Your message has been sent successfully!</div>
+  </div>
 </section>
 
+
 <footer>
-  <p>© 2023 Richesse Solutions. All rights reserved.</p>
-  <p>SEBI Registered Investment Advisor</p>
-  <p>Mumbai | Delhi | Bangalore</p>
+  <p>© 2024 Richesse Solutions. All rights reserved.</p>
+  <p>Hyderabad | Chennai | Dubai</p>
 </footer>
 
 <script>
@@ -297,6 +316,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Show the loader
+    document.getElementById('loader').style.display = 'block';
+
+    // Create a FormData object
+    const formData = new FormData(this);
+
+    // Send the form data using Fetch API
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Hide the loader
+        document.getElementById('loader').style.display = 'none';
+        
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
+
+        // Optionally, you can reset the form here
+        this.reset();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Hide the loader and handle error case
+        document.getElementById('loader').style.display = 'none';
+        alert('Oops! Something went wrong. Please try again later.');
+    });
+});
+
 </script>
 
 </body></html>
