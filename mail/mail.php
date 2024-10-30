@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('shaiksaleem2831@gmail.com', $name);
         $mail->addAddress('richessesolutions.official@gmail.com');
         $mail->addAddress('investor@richesse.solutions');
 
