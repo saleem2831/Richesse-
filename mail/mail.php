@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->setFrom('shaiksaleem2831@gmail.com', $name);
 
         // Add multiple recipients individually
-        $mail->addAddress('shaiksaleem2831@gmail.com');
-        // $mail->addAddress('richessesolutions.official@gmail.com');
-        // $mail->addAddress('investor@richesse.solutions');
+        // $mail->addAddress('shaiksaleem2831@gmail.com');
+        $mail->addAddress('richessesolutions.official@gmail.com');
+        $mail->addAddress('investor@richesse.solutions');
 
         $mail->isHTML(false);
         $mail->Subject = $subject;
