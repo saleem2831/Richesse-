@@ -7,10 +7,17 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate input fields
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $message = $_POST['message'];
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo json_encode(["error" => "Invalid email format"]);
+        exit;
+    }
 
     $subject = 'Message from ' . $email;
     $email_content = "Name: $name\nEmail: $email\nPhone: $phone\nMessage:\n$message\n";
@@ -27,9 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port = 587;
 
         $mail->setFrom('shaiksaleem2831@gmail.com', $name);
-
-        // Add multiple recipients individually
-        // $mail->addAddress('shaiksaleem2831@gmail.com');
         $mail->addAddress('richessesolutions.official@gmail.com');
         $mail->addAddress('investor@richesse.solutions');
 
@@ -38,13 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body = $email_content;
 
         $mail->send();
-        echo '<p>Mission Accomplished!</p>';
+        echo json_encode(["success" => "Mission Accomplished!"]);
     } catch (Exception $e) {
-        echo '<p>Oops! Something went wrong. Please try again later.</p>';
-        echo 'Error: ' . $mail->ErrorInfo;
+        http_response_code(500);
+        echo json_encode(["error" => "Oops! Something went wrong: " . $e->getMessage()]);
     }
-} else {
-    header("Location: ../contact.html");
-    exit;
+    exit; // Ensure that the script stops here
 }
-?>
