@@ -325,21 +325,45 @@
     margin:15px 0px;
   }
 
-  .loader {
-    display: none; /* Initially hidden */
-    border: 8px solid #f3f3f3; /* Light grey */
-    border-top: 8px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 40px; /* Size of the loader */
-    height: 40px; /* Size of the loader */
-    animation: spin 1s linear infinite; /* Animation */
-    margin: 10px auto; /* Center the loader */
+  /* Loader Styling */
+.loader {
+  display: none; /* Initially hidden */
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid var(--secondary); /* Secondary color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto; /* Center the loader */
 }
 
-/* Keyframes for the spinning animation */
+/* Success Icon Styling */
+#successIcon {
+  font-size: 2rem; /* Adjust size as needed */
+  color: var(--secondary); /* Secondary color */
+  text-align: center;
+  margin: 10px auto;
+}
+
+/* Success Message Styling */
+#successMessage {
+  display: none; /* Initially hidden */
+  color: var(--secondary); /* Secondary color for text */
+  /* You can also use silver: #C0C0C0; */
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+
+
+/* Loader Animation */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
   

@@ -45,7 +45,7 @@
   <div class="animate">
     <h1>Transform Your Trading Journey</h1>
     <p>Expert market analysis and trading solutions for the Indian market</p>
-    <a href="#" class="btn mtb">Schedule a Consultation</a>
+    <a href="https://calendly.com/richessesolutions-official/1-2-1" class="btn mtb">Schedule a Consultation</a>
   </div>
 </section>
 
@@ -280,7 +280,15 @@
           <button type="submit" class="btn">Send Message</button>
       </form>
       <div id="loader" class="loader"></div>
-      <div id="successMessage" style="display:none;">Your message has been sent successfully!</div>
+      <!-- <div id="successMessage" style="display:none;">Your message has been sent successfully!</div> -->
+      <div id="successIcon" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="var(--secondary)" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M13.485 1.343a1 1 0 0 1 0 1.414L5.5 10.414 2.514 7.414a1 1 0 1 1 1.414-1.414L5.5 8.586l7.07-7.07a1 1 0 0 1 1.415 0z"/>
+        </svg>
+    </div>
+    <div id="successMessage" style="display:none;">Your message has been sent successfully!</div>
+    
+      
   </div>
 </section>
 
@@ -330,8 +338,44 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// document.getElementById('contactForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent the default form submission
+
+//     // Show the loader
+//     document.getElementById('loader').style.display = 'block';
+
+//     // Create a FormData object
+//     const formData = new FormData(this);
+
+//     // Send the form data using Fetch API
+//     fetch(this.action, {
+//         method: 'POST',
+//         body: formData,
+//     })
+//     .then(response => response.text())
+//     .then(data => {
+//         // Hide the loader
+//         document.getElementById('loader').style.display = 'none';
+        
+//         // Show success message
+//         document.getElementById('successMessage').style.display = 'block';
+
+//         // Optionally, you can reset the form here
+//         this.reset();
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//         // Hide the loader and handle error case
+//         document.getElementById('loader').style.display = 'none';
+//         alert('Oops! Something went wrong. Please try again later.');
+//     });
+// });
+
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
+
+    // Hide the form
+    document.querySelector('.contact-form').style.display = 'none';
 
     // Show the loader
     document.getElementById('loader').style.display = 'block';
@@ -346,22 +390,28 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     })
     .then(response => response.text())
     .then(data => {
-        // Hide the loader
-        document.getElementById('loader').style.display = 'none';
-        
-        // Show success message
-        document.getElementById('successMessage').style.display = 'block';
+    // Hide the loader
+    document.getElementById('loader').style.display = 'none';
+    
+    // Show success icon and message
+    document.getElementById('successIcon').style.display = 'block';
+    document.getElementById('successMessage').style.display = 'block';
 
-        // Optionally, you can reset the form here
-        this.reset();
-    })
+    // Optionally, reset the form here
+    this.reset();
+})
     .catch(error => {
         console.error('Error:', error);
         // Hide the loader and handle error case
         document.getElementById('loader').style.display = 'none';
+
+        // Show form again in case of error
+        document.querySelector('.contact-form').style.display = 'block';
+
         alert('Oops! Something went wrong. Please try again later.');
     });
 });
+
 
 </script>
 
