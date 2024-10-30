@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $message = $_POST['message'];
 
-    $to = 'shaiksaleem2831@gmail.com';
     $subject = 'Message from ' . $email;
     $email_content = "Name: $name\nEmail: $email\nPhone: $phone\nMessage:\n$message\n";
 
@@ -23,12 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'shaiksaleem2831@gmail.com';
-        $mail->Password = 'accp xqud jphc mzsn';
+        $mail->Password = 'accp xqud jphc mzsn';  // Ensure this is secure and not publicly accessible
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         $mail->setFrom('shaiksaleem2831@gmail.com', $name);
-        $mail->addAddress($to);
+
+        // Add multiple recipients individually
+        // $mail->addAddress('shaiksaleem2831@gmail.com');
+        $mail->addAddress('richessesolutions.official@gmail.com');
+        $mail->addAddress('investor@richesse.solutions');
 
         $mail->isHTML(false);
         $mail->Subject = $subject;
