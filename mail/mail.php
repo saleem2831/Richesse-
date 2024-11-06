@@ -28,8 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'shaiksaleem2831@gmail.com';
-        $mail->Password = 'accp xqud jphc mzsn';  // Ensure this is secure and not publicly accessible
+        // $mail->Username = 'shaiksaleem2831@gmail.com';
+        // $mail->Password = 'accp xqud jphc mzsn';  // Ensure this is secure and not publicly accessible
+        $mail->Username = 'richessesolutions.official@gmail.com';
+        $mail->Password = 'ddww robt btwo fgql';  // 
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
